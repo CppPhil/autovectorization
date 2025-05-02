@@ -9,6 +9,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_BUILD_TYPE STREQUAL "Release")
   message(
     STATUS "Using GNU compiler in Release mode: enabling vectorization flags.")
+
+  # -O3: Enables aggressive optimization, including auto-vectorization.
+  # -ftree-vectorize: Explicitly enables loop vectorization (already implied by
+  # -O3). -march=native: Enables instructions specific to your CPU (e.g., AVX2
+  # or SSE4). -fopt-info-vec: Reports which loops were vectorized (output goes
+  # to stdout).
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -O3 -ftree-vectorize -march=native -fopt-info-vec")
 endif()
