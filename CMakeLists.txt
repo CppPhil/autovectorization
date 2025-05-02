@@ -12,9 +12,12 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_BUILD_TYPE STREQUAL "Release")
 
   # -O3: Enables aggressive optimization, including auto-vectorization.
   # -ftree-vectorize: Explicitly enables loop vectorization (already implied by
-  # -O3). -march=native: Enables instructions specific to your CPU (e.g., AVX2
-  # or SSE4). -fopt-info-vec: Reports which loops were vectorized (output goes
-  # to stdout).
+  # -O3).
+
+  # -march=native: Enables instructions specific to your CPU (e.g., AVX2 or
+  # SSE4).
+
+  # -fopt-info-vec: Reports which loops were vectorized (output goes to stdout).
   set(CMAKE_CXX_FLAGS
       "${CMAKE_CXX_FLAGS} -O3 -ftree-vectorize -march=native -fopt-info-vec")
 endif()
