@@ -1,15 +1,17 @@
+#include <array>
 #include <iostream>
-#include <vector>
 
 int main()
 {
-  const int size{1000000};
+  constexpr int size{1000000};
 
-  std::vector<double> a(size, 1.0);
-  std::vector<double> b(size, 2.0);
-  std::vector<double> c(size);
+  std::array<double, size> a{};
+  a.fill(1.0);
+  std::array<double, size> b{};
+  b.fill(2.0);
+  std::array<double, size> c{};
 
-  for (int i{0}; i < N; ++i) {
+  for (int i{0}; i < size; ++i) {
     c[i] = a[i] + b[i];
   }
 
