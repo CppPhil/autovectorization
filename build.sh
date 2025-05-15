@@ -25,4 +25,4 @@ else
   cmake -G "Unix Makefiles" -CMAKE_BUILD_TYPE=$BUILD_TYPE ..
 fi
 
-cmake --build . --parallel
+cmake --build . --parallel --config=$BUILD_TYPE
