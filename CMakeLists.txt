@@ -22,6 +22,19 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" AND CMAKE_BUILD_TYPE STREQUAL "Release")
       "${CMAKE_CXX_FLAGS} -O3 -ftree-vectorize -march=native -fopt-info-vec")
 endif()
 
+if(CMAKE_CXX_COMPILER_ID MATCHES "AppleClang" AND CMAKE_BUILD_TYPE STREQUAL
+                                                  "Release")
+  message(
+    STATUS "Using AppleClang in Release mode: enabling vectorization flags.")
+  # -O3: Aggressive optimization, includes auto-vectorization.
+
+  # -Rpass=loop-vectorize: Reports vectorized loops.
+
+  # -march=native: Enables CPU-specific instructions (e.g., AVX2, SSE4).
+  set(CMAKE_CXX_FLAGS
+      "${CMAKE_CXX_FLAGS} -O3 -Rpass=loop-vectorize -march=native")
+endif()
+
 add_executable(example_executable src/main.cpp)
 target_include_directories(example_executable
                            PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
